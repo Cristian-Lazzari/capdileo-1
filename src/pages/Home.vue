@@ -73,22 +73,22 @@
         
     }
 
-    .main-home::-webkit-scrollbar-thumb {
-        border-radius: 20px;
-        background: $c-header;
-        
-    }
-    .main-home::-webkit-scrollbar-track {
-        border-radius: 20px;
-        background: rgba(52, 4, 7, 0.786);
-        
-    }
-    .main-home::-webkit-scrollbar-thumb:hover {
-        border-radius: 20px;
-        background-color: $c-nav-link;
-        border: 2px solid $c-header;
-        
-    }
+.main-home::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: $c-header;
+    
+}
+.main-home::-webkit-scrollbar-track {
+    border-radius: 20px;
+    background: rgba(52, 4, 7, 0.786);
+    
+}
+.main-home::-webkit-scrollbar-thumb:hover {
+    border-radius: 20px;
+    background-color: $c-nav-link;
+    border: 2px solid $c-header;
+    
+}
 .home{
     position: fixed;
     top: 0;

@@ -9,7 +9,6 @@ export default {
     return {
       state,
 
-
       arrTimesSlot: [],
       arrTimesSlotApi: [],
 
@@ -210,7 +209,10 @@ export default {
         
       }
       
-    }
+    },
+    onSubmit(token) {
+        document.getElementById("demo-form").submit();
+      }
   },
   created() {
    
@@ -283,7 +285,7 @@ export default {
       </div>
     </div>
 
-    <div class="form" id="orderForm">
+    <form class="form" id="demo-form" >
       <div>
         <input v-model="name" type="text" placeholder="Nome" id="name" />
         <div v-if="nameError" id="nameError">{{ nameError }}</div>
@@ -321,8 +323,16 @@ export default {
       </div>
 
 
-      <span v-if="!loading" @click="sendOrder()" class="btn">Invia</span>
-    </div>
+      <button v-if="!loading" 
+      
+      @click.prevent="onSubmit" 
+      class="g-recaptcha btn" 
+      data-sitekey="6Ld254ooAAAAAPDhJAkgpIIaJe09mlZxpuDULufz"
+
+			data-action='submit'>Invia</button>
+
+
+    </form>
     <div v-if="loading" class="loop cubes">
       <div class="item cubes"></div>
       <div class="item cubes"></div>
@@ -331,6 +341,11 @@ export default {
       <div class="item cubes"></div>
       <div class="item cubes"></div>
     </div>
+
+    <!-- <form  action="http://127.0.0.1:8000/api/orders" method="POST">
+		  <button class="g-recaptcha" data-sitekey="6Ld254ooAAAAAPDhJAkgpIIaJe09mlZxpuDULufz" data-callback='onSubmit'
+			data-action='submit'>Submit</button>
+	  </form> -->
   </div>
 </template>
 
