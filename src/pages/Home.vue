@@ -21,7 +21,7 @@
 
 <template>
     <div class="home">
-        <AppHeader/>
+        <AppHeader class="hd" />
         <div class="main-home">
             
             <div class="par par-1"  v-if="state.setting[0].status">
@@ -89,6 +89,7 @@
     border: 2px solid $c-header;
     
 }
+.hd{box-shadow: 10px 10px 10px black; }
 .home{
     position: fixed;
     top: 0;
@@ -135,6 +136,7 @@
                     display: flex;
                     flex-direction: column;
                     gap: 1rem;
+                    max-width: 70%;
                     h2{
                         line-height: 38px;
                         max-width: 200px;
@@ -166,7 +168,14 @@
 
 }
 @media (max-width:$bp1) {
+    .main-home{
 
+        margin: 0!important;
+        width: 100%!important;
+    }
+    .overlay{
+        flex-direction: column!important;
+    }
   
 }
 </style>

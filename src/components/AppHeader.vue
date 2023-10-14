@@ -35,6 +35,7 @@
   padding: 3rem;
   margin-left: 2rem;
   background-color: $c-header;
+  
   .cont{
     @include dfc;
     justify-content: space-between;
