@@ -6,7 +6,12 @@ export const state = reactive({
     arrCart:[],
     arrId:[],
     arrQt:[],
-    setting:[],
+    //setting:[],
+    setting:[
+        {status: 1},
+        {status: 1},
+        {status: 1},
+    ],
     actvPage: 1,
     baseUrl: 'http://127.0.0.1:8000/',
     getImageUrl(image) {
