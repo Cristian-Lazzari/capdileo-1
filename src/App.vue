@@ -39,13 +39,17 @@ body{
     overflow: auto;
 }
 
+
+@media (max-width:890px) {
+  .page{
+    width: 100%;
+  }
+  
+}
+
 body::-webkit-scrollbar{
   width: 10px;
 }
-
-
-
-
 body::-webkit-scrollbar-thumb {
   border-radius: 20px;
   background: $c-header;

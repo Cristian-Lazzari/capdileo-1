@@ -165,5 +165,8 @@
     background-image: url('../assets/img/pizza-olio.png');
 
 }
+@media (max-width:$bp1) {
 
+  
+}
 </style>

@@ -64,10 +64,19 @@
 @media (max-width:$bp1) {
 
 
+  .header{
+    margin: 0;
+  }
+  
+}
+@media (max-width:$bp2) {
+
+
   #title{
     font-size: 40px;
   }
   
 }
+
 
 </style>

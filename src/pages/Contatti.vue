@@ -20,25 +20,31 @@
 
 <template>
   <div class="contatti">
-    <h1>I nostri Contatti</h1>
-    <div class="cnt-container">
+    <header>
+      <h1>Il Capriccio di Leo</h1>
+    </header>
+    <div class="cont">
 
-      <div class="contact">
-        <div class="cnt-name">email</div>
-        <div class="cnt">pizzeria@gmail.com</div>
-      </div>    
-      <div class="contact">
-        <div class="cnt-name">telefono</div>
-        <a href="tel:+393334422266" class="cnt">+39 3334422266</a>
-      </div>    
-    </div>
-
-    <div class="map">
-      <h1>Dove trovarci</h1>
-
-      <a href="https://www.google.com/maps/place/Pizzeria+Il+Capriccio+di+Leo/@43.5948219,13.2980245,17z/data=!3m1!4b1!4m6!3m5!1s0x132d9dbad592a331:0x349d7e3dd6b01160!8m2!3d43.5948219!4d13.3005994!16s%2Fg%2F11dxlc9msx?entry=ttu">
-        <img src="../assets/img/googlemaps.png"  alt="">
-      </a>
+      <h1>I nostri Contatti</h1>
+      <div class="cnt-container">
+  
+        <div class="contact">
+          <div class="cnt-name">email</div>
+          <div class="cnt">pizzeria@gmail.com</div>
+        </div>    
+        <div class="contact">
+          <div class="cnt-name">telefono</div>
+          <a href="tel:+393334422266" class="cnt">+39 3334422266</a>
+        </div>    
+      </div>
+  
+      <div class="map">
+        <h1>Dove trovarci</h1>
+  
+        <a href="https://www.google.com/maps/place/Pizzeria+Il+Capriccio+di+Leo/@43.5948219,13.2980245,17z/data=!3m1!4b1!4m6!3m5!1s0x132d9dbad592a331:0x349d7e3dd6b01160!8m2!3d43.5948219!4d13.3005994!16s%2Fg%2F11dxlc9msx?entry=ttu">
+          <img src="../assets/img/googlemaps.png"  alt="">
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -46,48 +52,73 @@
 <style scoped lang="scss">
 @use '../assets/styles/general.scss' as *;
 
+
+header{
+    padding: 10px 0;
+    background-color: $c-header;
+    
+    h1{
+      text-align: center;
+      font-size: 30px;
+      color: white;
+      font-family: 'Playball', cursive;
+      text-shadow: -3px -3px 15px black;
+    }
+  }
 img{
   width: 100%;
   max-width: 600px;
 }
 .contatti{
-  @include dfc;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: 1em;
-}
-.cnt-container{
-  @include dfc;
-  flex-direction: column;
-  gap: 1.5rem;
-  .contact{
-    display: flex;
-    border: 2px solid $c-white;
-    color: $c-white;
-    width: 320px;
+  .cont{
+    @include dfc;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
     text-align: center;
-    font-size: 90%;
-    .cnt-name{
-      width: 30%;
-      border-right: 2px solid $c-white;
-      padding: .5em;
-      text-transform: uppercase;
-      background-color: $c-red-op-med;
+    h1{
+      text-transform: uppercase
+    }
+    .cnt-container{
+      @include dfc;
+      flex-direction: column;
+      gap: 1.5rem;
+      .contact{
+        display: flex;
+        border: 2px solid $c-white;
+        color: $c-white;
+        width: 320px;
+        text-align: center;
+        font-size: 90%;
+        .cnt-name{
+          width: 30%;
+          border-right: 2px solid $c-white;
+          padding: .5em;
+          text-transform: uppercase;
+          background-color: $c-red-op-med;
+          
+        }
+        .cnt{
+          color: $c-white;
+          width: 70%;
+          background-color: $c-black-op-med;
+          padding: .5em;
       
+        }
+      }
     }
-    .cnt{
-      color: $c-white;
-      width: 70%;
-      background-color: $c-black-op-med;
-      padding: .5em;
-  
-    }
+    
   }
+
 }
+
 .map{
   @include dfc;
   flex-direction: column;
   gap: 1rem;
+  img{
+    width: 90%;
+  }
 }
 
 </style>

@@ -547,6 +547,19 @@ export const state = reactive({
                 visible: 1
             }
         
-    ]
+    ],
+    openside(){
+        if(this.sideMenuValue){
+            this.sideMenuValue = 0
+        }else{
+            this.sideMenuValue = 1
+            
+        }
+    },
+    updateActvPage(page){
+        this.sideMenuValue = 0
+        this.actvPage = page;
+    }
+
     
 });
