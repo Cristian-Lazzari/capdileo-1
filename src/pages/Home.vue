@@ -36,7 +36,7 @@
             <div class="par par-2"  v-if="state.setting[1].status">
             <div class="overlay">
                 <div class="t-c">
-                    <h2><span class="s1">PRENOTA ORA</span> IL TUO <span class="s2">TAVOLO</span></h2>
+                    <h2><span class="s1 s1-m">PRENOTA ORA</span> IL TUO <span class="s2 s2-m">TAVOLO</span></h2>
                     <span>E se volessi cenare proprio da noi? Prenota subito il tuo tavolo ti aspettiamo a cena da noi!</span>
                 </div>
                 <router-link :to="{ name: 'prenotaServizio' }" class="btn" >Prenota un tavolo</router-link>
@@ -176,6 +176,17 @@
     .overlay{
         flex-direction: column!important;
     }
+  
+}
+@media (max-width:$bp1) {
+
+ .s1-m{
+    font-size: 20px !important;
+}
+.s2-m{
+     font-size: 20px !important;
+
+ }
   
 }
 </style>

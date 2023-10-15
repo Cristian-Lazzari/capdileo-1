@@ -171,7 +171,18 @@
   }
 }
 
-
+@media (max-width:$bp3){
+  .post{
+    display: flex;
+    flex-direction: column !important;
+    img{
+      width: 70% !important;
+    }
+    .text{
+      width: 70% !important;
+    }
+  }
+}
 
 
 </style>
