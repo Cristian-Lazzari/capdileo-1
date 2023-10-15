@@ -22,6 +22,7 @@
   <div class="contatti">
     <header>
       <h1>Il Capriccio di Leo</h1>
+      <div class="btn-menu" @click="state.openside">Menu</div>
     </header>
     <div class="cont">
 
@@ -56,6 +57,7 @@
 header{
     padding: 10px 0;
     background-color: $c-header;
+    position: relative;
     
     h1{
       text-align: center;
@@ -120,5 +122,23 @@ img{
     width: 90%;
   }
 }
+
+.btn-menu{
+  display: none;
+  
+  text-transform: uppercase;
+  background-color: $c-footer-nav;
+  color: $c-nav-link;
+  font-weight: bolder;
+  width: fit-content;
+  padding: 1rem 1rem;
+  border-radius: 0 0 20px 20px ;
+  
+  position: absolute;
+  left: 10px;
+  top: 0px;
+
+}
+@media (max-width:$bp1) {.btn-menu{display:block;}}
 
 </style>

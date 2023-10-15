@@ -10,7 +10,7 @@ export const state = reactive({
     setting:[
         {status: 1},
         {status: 1},
-        {status: 1},
+        {status: 0},
     ],
     actvPage: 1,
     baseUrl: 'http://127.0.0.1:8000/',

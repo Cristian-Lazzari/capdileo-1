@@ -34,13 +34,20 @@
   display: none;
   margin-left: 10px;
   text-transform: uppercase;
-  background-color: $c-footer-nav;
-  color: $c-nav-link;
+  
+  color: $c-white;
+  border: 2px solid white;
+  border-top: none;
   font-weight: bolder;
   width: fit-content;
-  padding: 1rem 2rem;
+  padding: .8rem 2rem 1rem;
   border-radius: 0 0 20px 20px ;
-  align-self: flex-start;
+  
+    
+  position: absolute;
+  left: 10px;
+  top: 0px;
+  z-index: 20;
 
 }
 .header{
@@ -53,13 +60,13 @@
   .cont{
     @include dfc;
     flex-direction: column;
-    justify-content: space-between;
-    height: 80%;
+    justify-content: space-around;
+    height: 100%;
     width: 100%;
     
     .center{
 
-      height: 80%;
+      //height: 80%;
       padding: 0 4rem;
       @include dfc;
       justify-content: space-between;
@@ -76,7 +83,7 @@
       img{
         box-shadow: -7px -7px 20px black;
         position: relative;
-        height: 100%;
+        height: 200px;
         //height: 80px;
       }
     }
@@ -87,6 +94,8 @@
   color: white;
   text-shadow: 2px 2px 6px black;
   padding-bottom: 1em;
+  width: 80%;
+  text-align: center;
 }
 
 @media (max-width:$bp1) {
@@ -104,7 +113,10 @@
     background-image: url('../assets/img/pizza-espansa.png');
     background-position: center;
     background-size: cover;
+    justify-content: center;
     .cont{
+      height: 90%;
+      
   
       backdrop-filter: blur(5px);
     }
@@ -121,7 +133,7 @@
 @media (max-width:$bp3) {
   
   #title{
-    font-size: 40px;
+    font-size: 50px;
   }
   
 }

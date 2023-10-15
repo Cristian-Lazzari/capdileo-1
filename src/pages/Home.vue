@@ -27,7 +27,7 @@
             <div class="par par-1"  v-if="state.setting[0].status">
                 <div class="overlay">
                     <div class="t-c">
-                        <h2><span class="s1">ORDINA</span> IL NOSTRO <span class="s2">ASPORTO</span> </h2>
+                        <h2 id="h2par1"><span class="s1">ORDINA</span> IL NOSTRO <span class="s2">ASPORTO</span> </h2>
                         <span>La serata perfetta non esis... E invece esiste eccome! Nasce proprio dal pasto perfetto, quindi che aspetti prenota ora la tua pizza o il tavolo per poterla gustare da noi </span>
                     </div>
                     <router-link :to="{ name: 'prenota' }" class="btn" >Prenota asporto</router-link>
@@ -36,7 +36,7 @@
             <div class="par par-2"  v-if="state.setting[1].status">
             <div class="overlay">
                 <div class="t-c">
-                    <h2><span class="s1 s1-m">PRENOTA ORA</span> IL TUO <span class="s2 s2-m">TAVOLO</span></h2>
+                    <h2 id="h2par2"><span class="s1 s1-m">PRENOTA ORA</span> IL TUO <span class="s2 s2-m">TAVOLO</span></h2>
                     <span>E se volessi cenare proprio da noi? Prenota subito il tuo tavolo ti aspettiamo a cena da noi!</span>
                 </div>
                 <router-link :to="{ name: 'prenotaServizio' }" class="btn" >Prenota un tavolo</router-link>
@@ -45,7 +45,7 @@
             <div class="par par-3">
                 <div class="overlay">
                     <div class="t-c">
-                        <h2>SCOPRI IL NOSTRO MENU</h2>
+                        <h2 id="h2par3">SCOPRI IL NOSTRO MENU</h2>
                         <span>
                             Se ancora non hai provato le sfiziosità della nostra cucina devi assolutamente vedere il nostro menù
                         </span>
@@ -117,11 +117,11 @@
             width: 100%!important;
             color: $c-white;
             //filter: grayscale(50);
-            background-position: center;
+            background-position: center bottom;
             background-size: cover;
             position: relative;
             .overlay{
-                background-color: rgba(0, 0, 0, 0.522);
+                background: linear-gradient(rgba(0, 0, 0, 0.832), rgba(0, 0, 0, 0.359));
                 position: absolute;
                 top: 0;
                 bottom: 0;
@@ -142,11 +142,11 @@
                         max-width: 200px;
                         font-size: 40px;
                         .s1{
-                            font-size: 50px;
+                            font-size: 115%;
                             
                         }
                         .s2{
-                            font-size: 60px;
+                            font-size: 140%;
                             
                         }
                     }
@@ -159,6 +159,7 @@
 }
 .par-1{
     background-image: url('../assets/img/pizza-4.png');
+    background-position: center !important;
 }
 .par-2{
     background-image: url('../assets/img/pizza-2.png');
@@ -168,8 +169,11 @@
 
 }
 @media (max-width:$bp1) {
+    .home{
+        padding: 0 !important;
+    }
     .main-home{
-
+        padding: 0 !important;
         margin: 0!important;
         width: 100%!important;
     }
@@ -180,13 +184,9 @@
 }
 @media (max-width:$bp1) {
 
- .s1-m{
-    font-size: 20px !important;
-}
-.s2-m{
-     font-size: 20px !important;
-
- }
-  
+    #h2par1, #h2par2, #h2par3
+    {
+        font-size: 28px;
+    }
 }
 </style>
