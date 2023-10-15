@@ -55,7 +55,7 @@
       </div>
     </div>
   </div>
-  <div class="button-nav" @click="state.openside" v-if="!state.sideMenuValue"> MENU</div>
+  
   <div :class="state.sideMenuValue ? 'nav-mb-on' : 'nav-mb-off'">
     <div :class="state.sideMenuValue ? 'burger-close-on' : 'burger-close-off'" @click="state.openside">
       <div class="line"></div>
