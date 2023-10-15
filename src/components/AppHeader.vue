@@ -40,18 +40,22 @@
   width: fit-content;
   padding: 1rem 2rem;
   border-radius: 0 0 20px 20px ;
+  align-self: flex-start;
 
 }
 .header{
   background-color: $c-header;
   margin-left: 2rem;
   height: 40%;
-  
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   .cont{
     @include dfc;
     flex-direction: column;
     justify-content: space-between;
     height: 80%;
+    width: 100%;
     
     .center{
 
