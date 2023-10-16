@@ -33,7 +33,7 @@
 				.then(response => {
 					this.arrCategory = response.data.results;
 				});
-        this.arrCategory = this.arrCategory.shift()
+        //this.arrCategory = this.arrCategory.shift()
       },
       changeCategory(value){
 
@@ -81,8 +81,8 @@
     <div class="menu-cont">
 
       <h1>Menu</h1>
-      <div class="top-menu">
-        <div v-for="cat in arrCategory" class="categry">{{ cat.name }}</div>
+      <div class="categorie">
+        <div v-for="cat in arrCategory" class="category"> <span>{{ cat.name }}</span></div>
       </div>
   
       <div class="main-menu">
@@ -92,7 +92,7 @@
         <div class="title">{{ item.name }}</div>
         <div class="c-tp">
 
-          <div class="tags"> {{fixtag(item.tags) }}</div>
+          <div class="tags"> <span>{{fixtag(item.tags) }}</span></div>
           <div class="price">{{ getPrice(item.price) }}</div>
         </div>
        </div>
@@ -141,7 +141,14 @@
     overflow: auto;
     height: 100%;
 
-    padding: 1rem 0 ;
+    padding: 1rem 1rem ;
+    h1{
+      text-align: center;
+      text-transform: uppercase;
+      padding: 1rem
+    }
+
+
     .main-menu{
 
       @include dfc;
@@ -172,6 +179,7 @@
           padding: 1rem;
           text-align: left;
           width: calc((100% - 100px));
+          text-transform: uppercase;
           
         }
         .c-tp{
@@ -191,15 +199,19 @@
             padding-bottom: .5rem;
           }
           .tags{
-            white-space: nowrap;
+            overflow: hidden;
             display: flex;
             padding-top: .5rem;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
+            padding-right: .5rem;
             font-size: 10px;
             font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             font-weight: bold!important; 
+            span{
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+
+            }
           }
           .price{
             width: 100%;
@@ -213,10 +225,57 @@
     }
     
   }
+
+
 }
-@media (max-width:$bp1) {
-  .card{
-    width: calc((100% - 3rem) / 3);
+
+/*** */
+
+.categorie {
+  width: 300px;
+  height: 200px;
+  border-radius: 4px;
+  display: flex;
+  gap: 5px;
+  padding: .4em;
+  margin: 0 auto;
+  .category {
+   height: 100%;
+   flex: 1;
+   overflow: hidden;
+   cursor:grab;
+   border-radius: 2px;
+   transition: all .5s;
+   background-color: $c-footer-nav ;
+   border: 1px solid $c-nav-link;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   span {
+    min-width: 14em;
+    padding: .5em;
+    text-align: center;
+    transform: rotate(-90deg);
+    transition: all .5s;
+    text-transform: uppercase;
+    color: $c-nav-link;
+    letter-spacing: .1em;
+   }
   }
+  .category:hover {
+    flex: 5;
+    background-color: $c-header !important;
+  }
+  .category:hover span {
+    color: white;
+   transform: rotate(0);
+  }
+}
+
+/***** */
+
+
+@media (max-width:$bp2) {
+
 }
 </style>
