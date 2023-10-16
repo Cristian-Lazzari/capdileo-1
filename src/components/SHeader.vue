@@ -51,7 +51,7 @@ header{
       border-radius: 0 0 20px 20px ;
       
       position: absolute;
-      left: 10px;
+      left: 6px;
       top: 0px;
       z-index: 10;
     }
