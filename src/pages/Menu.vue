@@ -33,7 +33,7 @@
 				.then(response => {
 					this.arrCategory = response.data.results;
 				});
-        //this.arrCategory = this.arrCategory.shift()
+        this.arrCategory = this.arrCategory.shift()
       },
       changeCategory(value){
 
