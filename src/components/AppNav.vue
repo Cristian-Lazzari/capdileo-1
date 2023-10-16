@@ -277,7 +277,7 @@
 .bottom-footer-off{
   display: none;
 }
-@media (max-width:890px) {
+@media (max-width:$bp1) {
   .nav{
     display: none;
   }

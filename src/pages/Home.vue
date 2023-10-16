@@ -181,12 +181,12 @@
         flex-direction: column!important;
     }
   
-}
-@media (max-width:$bp1) {
-
     #h2par1, #h2par2, #h2par3
     {
         font-size: 28px;
     }
+}
+@media (max-width:$bp1) {
+
 }
 </style>

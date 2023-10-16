@@ -1,10 +1,10 @@
 <script >
   import {state} from '../state.js';
   import axios from 'axios'
- 
+  import sh from '../components/SHeader.vue'
 
   export default {
-
+    components:{sh},
 
     data(){
         return{     
@@ -45,7 +45,23 @@
         num = "€" + num  
 
         return num
-      }
+      },
+      fixtag(arr){
+      let arrtag='';
+      arr.forEach((element, i) => {
+        
+        if(i+1==arr.length){
+           
+          arrtag = arrtag + element.name + '.'
+        }else{
+          arrtag = arrtag + element.name + ', '
+          
+        }
+      });
+      return arrtag
+      },
+
+
 
     },
     created(){
@@ -55,175 +71,152 @@
 
       this.state.actvPage = 2;
     },
-
+    
   }
 </script>
 
 <template>
   <div class="menu">
-    <div class="top-menu">
+    <sh/>
+    <div class="menu-cont">
+
       <h1>Menu</h1>
-      <select name="category" class="category" @change="changeCategory(categoryId)" v-model="categoryId">
-        <option value="0">SCEGLI UNA CATEGORIA</option>
-        <option value="2">Pizze Speciali</option>
-        <option value="3">Pizze Rosse</option>
-        <option value="4">Pizze Bianche</option>
-        <option value="5">Dolci</option>
-        <option value="6">Bibite</option>
-      </select>
-    </div>
-
-    <div class="body-menu">
-
-      <div class="product" :key="item.id" v-for="item in arrProduct">
-        <div class="text-content">
-          <h2>{{ item.name }}</h2>
-
-          <div class="componenti">
-            <h5>Ingredienti:</h5>
-            <span v-for="item in item.tags" :key="item.id">{{ item.name + ' - ' }}</span>
-          </div>
-
-        </div>
-        <img :src="state.getImageUrl(item.image)" alt="">
-        <div class="price">{{ getPrice(item.price) }}</div>
+      <div class="top-menu">
+        <div v-for="cat in arrCategory" class="categry">{{ cat.name }}</div>
       </div>
+  
+      <div class="main-menu">
+  
+       <div class="card" v-for="item in arrProduct">
+        <img :src="state.getImageUrl(item.image)" alt="">
+        <div class="title">{{ item.name }}</div>
+        <div class="c-tp">
 
+          <div class="tags"> {{fixtag(item.tags) }}</div>
+          <div class="price">{{ getPrice(item.price) }}</div>
+        </div>
+       </div>
+  
+      </div>
     </div>
-
-
   </div>
 </template>
 
 <style scoped lang="scss">
 @use '../assets/styles/general.scss' as *;
 
-.menu{
-  padding: 1em;
-  .top-menu{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 1em;
-    padding-top: 1em;
-    h1{
-      font-size: 3em;
-      text-shadow: 2px -3px 3px black;
-    }
-    select{
-      border: 2px solid $c-white;
-      border-radius: 20px;
-      color: $c-white;
-      padding: 1em;
-      background-color: $c-red-op-med;
-    }
 
+.menu-cont::-webkit-scrollbar{
+      
+      width: 10px;
+      height: 10px;
+      
   }
-  .body-menu{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1em;
-    .product{
-      display: flex;
-      align-content: flex-start;
-      justify-content: space-between;
-      background-color: $c-black-op-max;
-      border-radius: 10px;
-      padding: 1em;
-      position: relative;
-      box-shadow: 3px 3px 5ch black;
-      .price{
-        position: absolute;
-        bottom: 1rem;
-        right: 1rem;
-      }
-      .text-content{
-        h2{
 
-          font-size: 1.7em;
-          text-transform: uppercase;
-        }
-        h5{
-          font-size: 1.2em;
-          text-transform: uppercase;
+.menu-cont::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: $c-header;
+    
+}
+.menu-cont::-webkit-scrollbar-track {
+    border-radius: 20px;
+    background: rgba(52, 4, 7, 0.786);
+    
+}
+.menu-cont::-webkit-scrollbar-thumb:hover {
+    border-radius: 20px;
+    background-color: $c-nav-link;
+    border: 2px solid $c-header;
+    
+}
+.hd{box-shadow: 10px 10px 10px black; }
 
-        }
-        gap:.5em;
+.menu{
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .menu-cont{
+    overflow: auto;
+    height: 100%;
+
+    padding: 1rem 0 ;
+    .main-menu{
+
+      @include dfc;
+      flex-wrap: wrap;
+      gap: 1rem;
+      .card{
+        height: 100px;
+        width: calc((100% - 2rem) / 2);
+
+        border-radius: 100px 0 0 100px  ;
+        position: relative;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-      }
-      img{
-        width: 150px;
-        height: 150px;
-        border-radius: 150px;
-        margin-bottom: 1.5rem;
-      }
-    }
-  }
-}
-@media (max-width:1150px) {
-  .product{
-    flex-direction: column-reverse;
-    align-items: center;
-    justify-content: flex-end!important;
-    .text-content{
-      margin-bottom: 1.8em;
-    }
-    img{
-      margin-bottom: 7px!important;
-    }
-  }
-}
-@media (max-width:750px) {
-.product{
-  h2{
-    font-size: 1.3em!important;
-  }
-}
-img{
-        width: 100px!important;
-        height: 100px!important;
-        border-radius: 100px!important;
-
-      }
-}
-@media (max-width:620px) {
-  .product{
-  h2{
-    font-size: 1.3em!important;
-  }
-}
-.body-menu{
-  grid-template-columns: 1fr 1fr!important;
+        justify-content: center;
+        align-items: flex-end;
+        overflow: hidden;
+        //gap: 1rem;
+        //padding: 1rem;
+        
+        img{
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          border-radius: 100px;
+        }
+        .title{
+          padding: 1rem;
+          text-align: left;
+          width: calc((100% - 100px));
+          
+        }
+        .c-tp{
+          background-color: #410606;
+          border-radius: 10px;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: flex-end;
+          
+          .tags, .price{
+            border-radius: 10px;
+            width: calc((100% - 120px));
+            padding-right: .5rem;
+            padding-bottom: .5rem;
+          }
+          .tags{
+            white-space: nowrap;
+            display: flex;
+            padding-top: .5rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: 10px;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-weight: bold!important; 
+          }
+          .price{
+            width: 100%;
+            //border-radius: 10px ;
+            text-align: right;
   
-}
-img{
-        width: 110px!important;
-        height: 110px!important;
-        border-radius: 100px!important;
-
+          }
+        }
       }
-}
-@media (max-width:580px) {
-  .product{
-    font-size: .8em!important;
-    h2{
-      font-size: 1.2em!important;
 
     }
-    h5{
-      font-size: .9em!important;
-    }
-  
+    
+  }
 }
-.body-menu{
-  @include dfc;
-  align-items: stretch;
-
-  
+@media (max-width:$bp1) {
+  .card{
+    width: calc((100% - 3rem) / 3);
+  }
 }
-
-}
-
 </style>

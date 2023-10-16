@@ -1,9 +1,10 @@
 <script>
 import { state } from "../state.js";
 import axios from "axios";
+import sh from '../components/SHeader.vue'
 
 export default {
-  components: {},
+  components:{sh},
   
   data() {
     return {
@@ -205,6 +206,7 @@ export default {
 
 <template>
   <div class="menu">
+    <sh/>
     <div class="top-menu">
       <h1>Prenota il tuo tavolo</h1>
     </div>

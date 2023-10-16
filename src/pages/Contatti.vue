@@ -1,9 +1,9 @@
 <script >
   import {state} from '../state.js'
-
+  import sh from '../components/SHeader.vue'
 
   export default {
-
+    components:{sh},
     data(){
         return{     
             state,
@@ -20,10 +20,7 @@
 
 <template>
   <div class="contatti">
-    <header>
-      <h1>Il Capriccio di Leo</h1>
-      <div class="btn-menu" @click="state.openside">Menu</div>
-    </header>
+    <sh/>
     <div class="cont">
 
       <h1>I nostri Contatti</h1>
@@ -54,19 +51,8 @@
 @use '../assets/styles/general.scss' as *;
 
 
-header{
-    padding: 10px 0;
-    background-color: $c-header;
-    position: relative;
-    
-    h1{
-      text-align: center;
-      font-size: 30px;
-      color: white;
-      font-family: 'Playball', cursive;
-      text-shadow: -3px -3px 15px black;
-    }
-  }
+
+
 img{
   width: 100%;
   max-width: 600px;

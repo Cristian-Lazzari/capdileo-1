@@ -40,7 +40,7 @@ body{
 }
 
 
-@media (max-width:890px) {
+@media (max-width:$bp1) {
   .page{
     width: 100%;
   }

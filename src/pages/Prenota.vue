@@ -1,9 +1,10 @@
 <script >
   import {state} from '../state.js';
   import axios from 'axios'
+  import sh from '../components/SHeader.vue'
 
   export default {
-  components:{  },
+    components:{sh},
 
     data(){
         return{     
@@ -147,6 +148,7 @@
 
 <template>
   <div class="menu">
+    <sh/>
     <div class="top-menu">
       <h1>Ordina d'Asporto</h1>
       <select name="category" class="category" @change="changeCategory(categoryId)" v-model="categoryId">

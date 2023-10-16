@@ -1,8 +1,9 @@
 <script >
   import {state} from '../state.js'
+  import sh from '../components/SHeader.vue'
 
   export default {
-
+    components:{sh},
 
     data(){
         return{     
@@ -19,11 +20,7 @@
 
 <template>
   <div class="about">
-    <header>
-      <h1>Il Capriccio di Leo</h1>
-      <div class="btn-menu" @click="state.openside">Menu</div>
-    </header>
-    
+    <sh/>
     <div class="main-about">
       <h1>LA NOSTRA PIZZERIA</h1>
       <div class="post-container">
@@ -114,19 +111,9 @@
 .about{
   overflow: hidden;
   height: 100vh;
-  header{
-    padding: 10px 0;
-    background-color: $c-header;
-    position: relative;
-    
-    h1{
-      text-align: center;
-      font-size: 30px;
-      color: white;
-      font-family: 'Playball', cursive;
-      text-shadow: -3px -3px 15px black;
-    }
-  }
+  display: flex;
+  flex-direction:column;
+
   .main-about{
     overflow: auto;
     padding: 2rem;

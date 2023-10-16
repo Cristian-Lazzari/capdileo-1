@@ -115,7 +115,7 @@
     background-size: cover;
     justify-content: center;
     .cont{
-      height: 90%;
+      height: 83%;
       
   
       backdrop-filter: blur(5px);
