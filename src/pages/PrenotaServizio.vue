@@ -228,7 +228,7 @@ export default {
         <div v-if="phoneError" id="phoneError">{{ phoneError }}</div>
       </div>
       <div>
-        <input type="number" v-model="nperson" id="" placeholder="numero ospiti">
+        <input  type="number" v-model="nperson" id="" placeholder="numero ospiti">
         <div v-if="npersonError" id="npersonError">{{ npersonError }}</div>
       </div>
       <div>
@@ -265,8 +265,8 @@ export default {
 @use "../assets/styles/general.scss" as *;
 
 .actv{
-  color: #fe1e52;
-  background-color: white !important;;
+  color: white;
+  background-color: $c-header !important;;
 }
 
 
@@ -526,9 +526,12 @@ export default {
   color: #ffda77;
 }
 .badge{
-  background-color: blue;
+  border: 1px solid white;
+  border-radius: 100px;
   padding: 5px 10px;
   margin: 5px;
+  width: 60px;
+  
 }
 .badge-off{
   background-color: rgb(210, 32, 19);
@@ -538,13 +541,13 @@ export default {
 .orari-container{
   display: flex;
   justify-content: center;
-  gap: 5px;
   flex-wrap: wrap;
   max-width: 900px;
 }
 .center-orari{
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: wrap;
+  max-width: 900px;
 }
 </style>
