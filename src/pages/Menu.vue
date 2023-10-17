@@ -12,6 +12,7 @@
             arrProduct:[],
             arrCategory:[],
             categoryId: 0,
+            actvcat: 1,
         }
     },
     methods:{
@@ -24,45 +25,53 @@
 					},
 				})
 				.then(response => {
-					this.arrProduct = response.data.results.data;
+          this.arrProduct = response.data.results.data;
 				});
       },
       getCategory(){
+
         axios
 				.get(state.baseUrl + 'api/categories', {})
 				.then(response => {
-					this.arrCategory = response.data.results;
+          this.arrCategory = response.data.results;
 				});
-        this.arrCategory = this.arrCategory.shift()
+ 
       },
       changeCategory(value){
+        if(value==1){
+          this.getProduct(0)
+          this.actvcat=value
+          
+        }else{
+          this.getProduct(value)
+          this.actvcat=value
 
-        this.getProduct(value)
+        }
       },
       getPrice(cent){
         let num = parseFloat(cent);
         num = num / 100;
         num = "€" + num  
-
+        
         return num
       },
       fixtag(arr){
-      let arrtag='';
-      arr.forEach((element, i) => {
-        
-        if(i+1==arr.length){
-           
-          arrtag = arrtag + element.name + '.'
-        }else{
-          arrtag = arrtag + element.name + ', '
+        let arrtag='';
+        arr.forEach((element, i) => {
           
-        }
-      });
-      return arrtag
+          if(i+1==arr.length){
+            
+            arrtag = arrtag + element.name + '.'
+          }else{
+            arrtag = arrtag + element.name + ', '
+            
+          }
+        });
+        return arrtag
       },
-
-
-
+      
+      
+      
     },
     created(){
       this.getProduct(0);
@@ -82,7 +91,9 @@
 
       <h1>Menu</h1>
       <div class="categorie">
-        <div v-for="cat in arrCategory" class="category"> <span>{{ cat.name }}</span></div>
+        <div v-for="cat in arrCategory" class="category" :class="actvcat == cat.id ? 'category-on' : '' " @click="changeCategory(cat.id)"> 
+          <span :class="actvcat == cat.id ? 'span-on' : '' ">{{ cat.name }}</span>
+        </div>
       </div>
   
       <div class="main-menu">
@@ -140,25 +151,26 @@
   .menu-cont{
     overflow: auto;
     height: 100%;
-
     padding: 1rem 1rem ;
     h1{
       text-align: center;
       text-transform: uppercase;
-      padding: 1rem
+      padding: 1rem;
+      font-size: 30px;
     }
-
-
+    
+    
     .main-menu{
+      margin-top: 2rem;
 
       @include dfc;
       flex-wrap: wrap;
       gap: 1rem;
       .card{
-        height: 100px;
+        height: $h-c;
         width: calc((100% - 2rem) / 2);
 
-        border-radius: 100px 0 0 100px  ;
+        border-radius: $h-c 0 0 $h-c  ;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -173,12 +185,12 @@
           top: 0;
           left: 0;
           height: 100%;
-          border-radius: 100px;
+          border-radius: $h-c;
         }
         .title{
           padding: 1rem;
           text-align: left;
-          width: calc((100% - 100px));
+          width: calc((100% - $h-c));
           text-transform: uppercase;
           
         }
@@ -194,22 +206,20 @@
           
           .tags, .price{
             border-radius: 10px;
-            width: calc((100% - 120px));
+            width: calc((100% - $h-c - 15px));
             padding-right: .5rem;
             padding-bottom: .5rem;
           }
           .tags{
-            overflow: hidden;
+
             display: flex;
             padding-top: .5rem;
             padding-right: .5rem;
-            font-size: 10px;
-            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            font-weight: bold!important; 
             span{
-              overflow: hidden;
-              white-space: nowrap;
-              text-overflow: ellipsis;
+              font-size: 10px;
+              font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+              font-weight: bold!important; 
+
 
             }
           }
@@ -232,8 +242,9 @@
 /*** */
 
 .categorie {
-  width: 300px;
-  height: 200px;
+  max-width: 450px;
+  width: 100%;
+  height: 160px;
   border-radius: 4px;
   display: flex;
   gap: 5px;
@@ -272,10 +283,24 @@
   }
 }
 
+.category-on {
+  flex: 2!important;
+  background-color: $c-header !important;
+}
+.category-on:hover {
+  flex: 5!important;
+  background-color: $c-header !important;
+}
+.span-on{
+  color: white!important;;
+
+}
 /***** */
 
 
 @media (max-width:$bp2) {
-
+  .card{
+    width: 95% !important;
+  }
 }
 </style>

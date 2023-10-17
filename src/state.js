@@ -2,7 +2,7 @@ import { reactive } from 'vue';
 
 export const state = reactive({
     sideMenuValue: 0,
-    sideCartValue: 1,
+    sideCartValue: 0,
     arrCart:[],
     arrId:[],
     arrQt:[],

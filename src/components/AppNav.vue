@@ -125,6 +125,7 @@
   text-align: center;
   .top{
     @include dfc;
+    justify-content: space-around;
     width: 100%;
     padding: 2rem;
     height: 60%;
@@ -150,7 +151,7 @@
     @include dfa;
     flex-direction: column;
     justify-content: space-between;
-    padding-top:15px;
+    padding-top:25px;
     text-shadow: 1px 1px 8px black;
     height: 40%;
     width: 100%;
