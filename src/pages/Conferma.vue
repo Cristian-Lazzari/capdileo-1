@@ -13,9 +13,6 @@ export default {
       arrTimesSlot: [],
       arrTimesSlotApi: [],
 
-      categoryId: 0,
-      totCart: 0,
-
       name: "",
       phone: "",
       idate:'',
@@ -223,117 +220,72 @@ export default {
 </script>
 
 <template>
-  <div class="menu">
-    <div class="top-menu">
-      <h1>Completa il tuo ordine</h1>
-    </div>
-    <div @click="opencart()" class="icon-cart">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="30"
-        height="30"
-        fill="currentColor"
-        class="bi bi-cart-fill"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-        />
-      </svg>
-    </div>
-    <div class="cart-on">
-      <!-- <div class="icon-cart"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16"> <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/> </svg></div> -->
-      <div
-        v-for="item in state.arrCart"
-        :class="state.sideCartValue ? 'item-off' : 'item-on'"
-        :key="item.id"
-      >
-        <div :class="state.sideCartValue ? 'sub-item-off' : 'sub-item-on tag'">
-          {{ item.title }}
-        </div>
-        <div :class="state.sideCartValue ? 'sub-item-off' : 'sub-item-on tag'">
-          {{ item.counter }}
-        </div>
-        <div :class="state.sideCartValue ? 'sub-item-off' : 'sub-item-on tag'">
-          {{ getPrice(item.totprice) }}
-        </div>
-        <svg
-          :class="state.sideCartValue ? 'sub-item-off' : 'sub-item-on'"
-          @click="removeItem(item.title)"
-          style="color: red"
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="bi bi-trash"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
-            fill="red"
-          ></path>
-          <path
-            fill-rule="evenodd"
-            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
-            fill="red"
-          ></path>
-        </svg>
-      </div>
-      <div :class="state.sideCartValue ? 'item-off' : 'item-on'">
-        <div :class="state.sideCartValue ? 'sub-item-off' : 'sub-item-on'">
-          Totale:{{ getPrice(totCart) }}
-        </div>
-      </div>
-    </div>
+ <div class="prenota">
+    <sh/>
+    <div class="prenota-cont">
 
-    <form class="form" id="demo-form" >
-      <div>
-        <input v-model="name" type="text" placeholder="Nome" id="name" />
-        <div v-if="nameError" id="nameError">{{ nameError }}</div>
-      </div>
-      <div>
-        <input
-          v-model="phone"
-          type="text"
-          onkeypress="return /[0-9]/i.test(event.key)"
-          placeholder="N° telefono"
-          id="phone"
-        />
-        <div v-if="phoneError" id="phoneError">{{ phoneError }}</div>
-      </div>
-      <div>
-        <input type="date" v-model="idate" @input="checkData(idate)" id="">
-        <div v-if="dateError" id="dateError">{{ dateError }}</div>
-      </div>
-      <div class="orari-container">
-        <!-- <select name="times" id="times" v-model="timeSlot">
-          <option value="">Seleziona una fascia oraria</option>
-          <option v-for="time in arrTimesSlot" :key="time.time_slot">
-            <span  v-if="time.visible" > {{ time.time_slot }} </span>
-              
+      <h1>Prenota il tuo Asporto</h1>
 
-          </option>
-        </select> -->
-
-          <div class="center-orari">
-            <div v-for="time in arrTimesSlot" :key="time.time_slot" >
-              <div v-if="time.visible" class="badge" :class="time.id == 'active' ? 'actv' : ''" @click="inputTime(time.time_slot, time.id)"  >{{ time.time_slot }} </div>
-            </div>
+      <div class="cart">
+        <div class="top-cart">
+          <svg   xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16"> <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/> </svg>
+          <div class="state.totcart">
+            {{ getPrice(state.totCart)}}
           </div>
-         <div v-if="timeError" id="timeError">{{ timeError }}</div>
+
+        </div>
+        <div :class="state.sideCartValue ? 'content-cart' : 'ccoff'" >
+          <div class="span" v-if="!state.arrCart.length && !state.sideCartValue">Il carrello è vuoto</div>
+          <div v-for="item in state.arrCart" :class="state.sideCartValue ?  'item-off' : 'item-on'" :key="item.id">
+            <div>{{ item.title }}</div>
+            <div>* {{ item.counter }}</div>
+            <div>{{ getPrice(item.totprice) }}</div>
+            <svg :class="state.sideCartValue ?  'sub-item-off' : 'sub-item-on'" @click="removeItem(item.title)"  style="color: white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="current-color" class="bi bi-trash" viewBox="0 0 16 16"> <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" fill="white"></path> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" fill="white"></path> </svg>
+          </div>
+          
+        </div>
       </div>
 
-
-      <button v-if="!loading" 
       
-      @click.prevent="onSubmit" 
-      class="g-recaptcha btn" 
-      data-sitekey="6Ld254ooAAAAAPDhJAkgpIIaJe09mlZxpuDULufz"
-
-			data-action='submit'>Invia</button>
-
-
-    </form>
+          <form class="form" id="demo-form" >
+            <div>
+              <input v-model="name" type="text" placeholder="Nome" id="name" />
+              <div v-if="nameError" id="nameError">{{ nameError }}</div>
+            </div>
+            <div>
+              <input
+                v-model="phone"
+                type="text"
+                onkeypress="return /[0-9]/i.test(event.key)"
+                placeholder="N° telefono"
+                id="phone"
+              />
+              <div v-if="phoneError" id="phoneError">{{ phoneError }}</div>
+            </div>
+            <div>
+              <input type="date" v-model="idate" @input="checkData(idate)" id="">
+              <div v-if="dateError" id="dateError">{{ dateError }}</div>
+            </div>
+            <div class="orari-container">
+                <div class="center-orari">
+                  <div v-for="time in arrTimesSlot" :key="time.time_slot" >
+                    <div v-if="time.visible" class="badge" :class="time.id == 'active' ? 'actv' : ''" @click="inputTime(time.time_slot, time.id)"  >{{ time.time_slot }} </div>
+                  </div>
+                </div>
+               <div v-if="timeError" id="timeError">{{ timeError }}</div>
+            </div>
+      
+            <button v-if="!loading" 
+            
+            @click.prevent="onSubmit" 
+            class="g-recaptcha btn" 
+            data-sitekey="6Ld254ooAAAAAPDhJAkgpIIaJe09mlZxpuDULufz"
+      
+            data-action='submit'>Invia</button>
+      
+          </form>
+    </div>
+  </div>
     <div v-if="loading" class="loop cubes">
       <div class="item cubes"></div>
       <div class="item cubes"></div>
@@ -343,15 +295,131 @@ export default {
       <div class="item cubes"></div>
     </div>
 
-    <!-- <form  action="http://127.0.0.1:8000/api/orders" method="POST">
-		  <button class="g-recaptcha" data-sitekey="6Ld254ooAAAAAPDhJAkgpIIaJe09mlZxpuDULufz" data-callback='onSubmit'
-			data-action='submit'>Submit</button>
-	  </form> -->
-  </div>
-</template>
+    
+  </template>
+  <!-- <form  action="http://127.0.0.1:8000/api/orders" method="POST">
+    <button class="g-recaptcha" data-sitekey="6Ld254ooAAAAAPDhJAkgpIIaJe09mlZxpuDULufz" data-callback='onSubmit'
+    data-action='submit'>Submit</button>
+  </form> -->
 
 <style scoped lang="scss">
 @use "../assets/styles/general.scss" as *;
+
+
+.prenota-cont::-webkit-scrollbar{
+      
+      width: 10px;
+      height: 10px;
+      
+  }
+
+.prenota-cont::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: $c-header;
+    
+}
+.prenota-cont::-webkit-scrollbar-track {
+    border-radius: 20px;
+    background: rgba(52, 4, 7, 0.786);
+    
+}
+.prenota-cont::-webkit-scrollbar-thumb:hover {
+    border-radius: 20px;
+    background-color: $c-nav-link;
+    border: 2px solid $c-header;
+    
+}
+.hd{box-shadow: 10px 10px 10px black; }
+
+@media (max-width:$bp1) {.prenota{ width: 100% !important;}}
+.prenota{
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+
+  .prenota-cont{
+    overflow: auto;
+    height: 100%;
+    padding: 1rem 1rem ;
+    h1{
+      text-align: center;
+      text-transform: uppercase;
+      padding: 1rem;
+      font-size: 30px;
+    }
+    
+    .cart{
+      color: $c-nav-link;
+    
+      border: 1px solid $c-nav-link;
+      background-color: $c-header;
+      max-width: 450px;
+      width: 100%;
+      border-radius: 4px;
+      padding: .4rem;
+      margin: 0 auto;
+      .top-cart{
+        padding: .2rem;
+        @include dfc;
+        justify-content: space-between;
+      }
+    }
+    
+    
+  }
+
+
+}
+
+
+
+.content-cart{
+  height: 0;
+  padding: 0rem;
+  display: flex;
+  flex-direction: column;
+  transition: all .2s linear ;
+}
+.ccoff{
+  padding: 2rem;
+  height: 100%;
+  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: all .2s linear ;
+  
+  
+}
+.item-off{
+  opacity: 0;
+  display: flex;
+  justify-content: space-between;
+  transition: all .2s linear .2s;
+  
+}
+.item-on{
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+  opacity: 1;
+  transition: all .2s linear .2s;
+  div{
+    width: 45%;
+  }
+  svg{
+    width: 10%;
+  }
+  
+}
+
+@media (max-width:$bp2) {
+  .card{
+    width: 95% !important;
+  }
+}
 
 .actv{
   color: #fe1e52;
@@ -403,82 +471,6 @@ export default {
 .btn_loading {
   cursor: wait;
 }
-.tag {
-  display: flex;
-  gap: 0.4em;
-  background-color: $c-black-op-med;
-  padding: 0.5em;
-  border-radius: 30px;
-}
-
-.cart-mobile {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3em;
-  padding: 1rem;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  width: 70%;
-  background-color: black;
-  border: 2px solid white;
-}
-.sub-item-off {
-  display: none;
-}
-.sub-item-on {
-  display: inline-block;
-}
-.cart-on {
-  margin: 1rem 1rem 3rem;
-  @include dfj;
-  flex-direction: column;
-  height: 100%;
-  gap: 0.4rem;
-  transition: all linear 0.3s;
-}
-.carts-on {
-  margin: 1rem 1rem 3rem;
-  @include dfj;
-
-  height: 100%;
-  gap: 0.4rem;
-  transition: all linear 0.3s;
-}
-.cart-off {
-  height: 0%;
-  margin: 0;
-  transition: all linear 0.3s;
-}
-.item-on {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem;
-  border: 2px solid white;
-  min-width: 300px;
-
-  transition: all linear 0.3s;
-}
-.item-off {
-  gap: 0rem;
-  padding: 0rem;
-  border: 0px solid white;
-  //width: 0px;
-  height: 0;
-  transition: all linear 0.3s;
-}
-.icon-cart {
-  margin: 1rem;
-}
-
-.cs {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-}
-
 //loader
 .cubes {
   position: absolute;

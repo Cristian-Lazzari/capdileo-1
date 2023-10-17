@@ -12,7 +12,6 @@
             arrProduct:[],
             arrCategory:[],
             categoryId: 0,
-            totCart:0,
             name:'',
             phone:'',
             time:'',
@@ -126,6 +125,7 @@
             element.counter = 0
           }
         });
+        this.getTot();
       },
       removeItem(title){
         this.state.arrCart.forEach((element, i) => {
@@ -147,6 +147,8 @@
           }
         });
 
+        this.getTot();
+
       },
       upCounter(id){
         this.arrProduct.forEach(element => {
@@ -163,6 +165,13 @@
               element.counter --
             }
           }
+        });
+      },
+      getTot(){
+        this.state.totCart = 0
+        this.state.arrCart.forEach(element => {
+          console.log(element.totprice)
+          this.state.totCart = this.state.totCart + element.totprice
         });
       }
     },
@@ -189,14 +198,22 @@
         </div>
       </div>
       <div class="cart">
-        <div class="icon-cart"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16"> <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/> </svg></div>
-        <div :class="state.sideCartValue ? 'content-cart' : 'ccoff'" @click="opencart" >
+        <div class="top-cart" @click="opencart">
+          <svg   xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16"> <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/> </svg>
+          <div class="state.totcart">
+            {{ getPrice(state.totCart)}}
+          </div>
+
+        </div>
+        <div :class="state.sideCartValue ? 'content-cart' : 'ccoff'" >
+          <div class="span" v-if="!state.arrCart.length && !state.sideCartValue">Il carrello è vuoto</div>
           <div v-for="item in state.arrCart" :class="state.sideCartValue ?  'item-off' : 'item-on'" :key="item.id">
             <div>{{ item.title }}</div>
-            <div>{{ item.counter }}</div>
+            <div>* {{ item.counter }}</div>
             <div>{{ getPrice(item.totprice) }}</div>
-            <svg :class="state.sideCartValue ?  'sub-item-off' : 'sub-item-on'" @click="removeItem(item.title)"  style="color: red" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"> <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" fill="red"></path> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" fill="red"></path> </svg>
+            <svg :class="state.sideCartValue ?  'sub-item-off' : 'sub-item-on'" @click="removeItem(item.title)"  style="color: white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="current-color" class="bi bi-trash" viewBox="0 0 16 16"> <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" fill="white"></path> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" fill="white"></path> </svg>
           </div>
+          <router-link :to="{ name: 'conferma' }" v-if="state.arrCart.length && !state.sideCartValue" class="next">Completa la tua ordinazione</router-link>
         </div>
       </div>
       
@@ -211,10 +228,12 @@
           <div class="price">{{ getPrice(item.price) }}</div>
         </div>
         <div class="add">
-         <span class="plus">+</span>
-         <span class="counter">{{ item.counter }}</span>
-         <span class="minus">-</span>
-         <div class="mybtn">aggiungi</div>
+          <div class="sec">
+            <span class="plus" @click="upCounter(item.id)" >+</span>
+            <span class="counter">{{ item.counter }}</span>
+            <span class="minus"  @click="downCounter(item.id)">-</span>
+          </div>
+         <div class="mybtn" @click="addItem(item.name, item.counter, item.price, item.id)">aggiungi</div>
         </div>
        </div>
       </div>
@@ -281,11 +300,37 @@
       .card-wrap{
         position: relative;
         width: calc((100% - 2rem) / 2);
+        margin-bottom: 60px;
         .add{
             position: absolute;
-            background-color: red;
+            //background-color: red;
+            bottom: -40px;
+            left: 0;
+            width: 100%;
+            @include dfc;
+            gap: 2rem;
+            .sec{
+              @include dfc;
+              gap: .5rem;
+
+              .plus, .minus{
+                height: 2rem;
+                width: 2rem;
+                @include dfc;
+                border: 2px solid white;
+                border-radius: 20px;
+              }
+            }
+            .mybtn{
+              padding: 5px 25px;
+              text-transform: uppercase;
+              border: 2px solid white;
+              border-radius: 20px;
+
+            }
             
           }
+
         .card{
           height: $h-c;
   
@@ -295,7 +340,7 @@
           flex-direction: column;
           justify-content: center;
           align-items: flex-end;
-          overflow: hidden;
+          //overflow: hidden;
           //gap: 1rem;
           //padding: 1rem;
           
@@ -338,6 +383,7 @@
                 font-size: 10px;
                 font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
                 font-weight: bold!important; 
+                text-transform:capitalize;
   
   
               }
@@ -421,17 +467,65 @@
   color: $c-nav-link;
 
   border: 1px solid $c-nav-link;
-  background-color: $c-footer-nav;
+  background-color: $c-header;
   max-width: 450px;
   width: 100%;
   border-radius: 4px;
   padding: .4rem;
   margin: 0 auto;
+  .top-cart{
+    padding: .2rem;
+    @include dfc;
+    justify-content: space-between;
+  }
 }
+.next{
+    border: 2px solid white;
+    text-transform: uppercase;
+    padding: 5px ;
+    text-align: center;
+    border-radius: 5px;
+  }
 .content-cart{
-  height: auto;
-
+  height: 0;
+  padding: 0rem;
+  display: flex;
+  flex-direction: column;
+  transition: all .2s linear ;
 }
+.ccoff{
+  padding: 2rem;
+  height: 100%;
+  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: all .2s linear ;
+  
+  
+}
+.item-off{
+  opacity: 0;
+  display: flex;
+  justify-content: space-between;
+  transition: all .2s linear .2s;
+  
+}
+.item-on{
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+  opacity: 1;
+  transition: all .2s linear .2s;
+  div{
+    width: 45%;
+  }
+  svg{
+    width: 10%;
+  }
+  
+}
+
 @media (max-width:$bp2) {
   .card{
     width: 95% !important;
