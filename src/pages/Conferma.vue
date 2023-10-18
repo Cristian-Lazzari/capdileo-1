@@ -429,8 +429,9 @@ export default {
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 20px;
-      margin-top: 10px
-}
+      margin-top: 10px;
+      border-radius: .4em;
+    }
 
 .center-orari{
   @include dfc;
