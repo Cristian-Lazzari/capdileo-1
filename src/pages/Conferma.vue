@@ -400,7 +400,6 @@ export default {
   width: 100%;
   border: 1px solid $c-nav-link;
   background-color: $c-footer-nav;
-
   display: flex;
   flex-direction: column;
   gap: 1rem;
