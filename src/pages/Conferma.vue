@@ -22,6 +22,7 @@ export default {
       phoneError: "",
       timeError: "",
       dateError: "",
+      cartError: "",
 
       isValid: true,
       loading: false,
@@ -74,6 +75,10 @@ export default {
       }
       if (!this.timeSlot) {
         this.timeError = "Seleziona una fascia oraria!";
+        this.isValid = false;
+      }
+      if (!this.state.arrId.length) {
+        this.cartError = "IL tuo carrello è vuoto torna nella sezione: ";
         this.isValid = false;
       }
 
@@ -237,6 +242,7 @@ export default {
         </div>
         <div :class="state.sideCartValue ? 'content-cart' : 'ccoff'" >
           <div class="span" v-if="!state.arrCart.length && !state.sideCartValue">Il carrello è vuoto</div>
+          <router-link :to="{ name: 'prenota' } "  v-if="!state.arrCart.length && !state.sideCartValue">Torna ad ORDINA D'ASPORTO</router-link>
           <div v-for="item in state.arrCart" :class="state.sideCartValue ?  'item-off' : 'item-on'" :key="item.id">
             <div>{{ item.title }}</div>
             <div>* {{ item.counter }}</div>
@@ -246,47 +252,54 @@ export default {
           
         </div>
       </div>
+      <div v-if="cartError" class="carterror">
+        <span id="cartError">{{ cartError }}</span> 
+        <span>
+          <router-link :to="{ name: 'prenota' }" >ORDINA D'ASPORTO</router-link>
 
+        </span>
+        
+      </div>
       
-          <form class="form" id="demo-form" >
+      <form class="form" id="demo-form" >
 
-            <div class="sec-form">
-              <label for="name">Nome e Cognome</label>
-              <input v-model="name" type="text" placeholder="Nome e Cognome" id="name" />
-              <div v-if="nameError" id="nameError">{{ nameError }}</div>
+        <div class="sec-form">
+          <label for="name">Nome e Cognome</label>
+          <input v-model="name" type="text" placeholder="Nome e Cognome" id="name" />
+          <div v-if="nameError" id="nameError">{{ nameError }}</div>
+        </div>
+        <div class="sec-form">
+          <label for="phone">Numero di telefono</label>
+          <input
+            v-model="phone"
+            type="text"
+            onkeypress="return /[0-9]/i.test(event.key)"
+            placeholder="N° telefono"
+            id="phone"
+          />
+          <div v-if="phoneError" id="phoneError">{{ phoneError }}</div>
+        </div>
+        <div class="sec-form"> 
+          <label for="date">Ineserisci una data</label>
+          <input type="date" v-model="idate" @input="checkData(idate)" id="">
+          <div v-if="dateError" id="dateError">{{ dateError }}</div>
+        </div>
+        <div class="sec-form">
+          <span>Seleziona un orario</span>
+            <div class="center-orari">
+              <div v-for="time in arrTimesSlot" :key="time.time_slot" >
+                <div v-if="time.visible" class="badge" :class="time.id == 'active' ? 'actv' : ''" @click="inputTime(time.time_slot, time.id)"  >{{ time.time_slot }} </div>
+              </div>
             </div>
-            <div class="sec-form">
-              <label for="phone">Numero di telefono</label>
-              <input
-                v-model="phone"
-                type="text"
-                onkeypress="return /[0-9]/i.test(event.key)"
-                placeholder="N° telefono"
-                id="phone"
-              />
-              <div v-if="phoneError" id="phoneError">{{ phoneError }}</div>
-            </div>
-            <div class="sec-form"> 
-              <label for="date">Ineserisci una data</label>
-              <input type="date" v-model="idate" @input="checkData(idate)" id="">
-              <div v-if="dateError" id="dateError">{{ dateError }}</div>
-            </div>
-            <div class="sec-form">
-              <span>Seleziona un orario</span>
-                <div class="center-orari">
-                  <div v-for="time in arrTimesSlot" :key="time.time_slot" >
-                    <div v-if="time.visible" class="badge" :class="time.id == 'active' ? 'actv' : ''" @click="inputTime(time.time_slot, time.id)"  >{{ time.time_slot }} </div>
-                  </div>
-                </div>
-               <div v-if="timeError" id="timeError">{{ timeError }}</div>
-            </div>
-      
-            <button v-if="!loading"
-            class="btn-send"           
-            @click.prevent="sendOrder"       
-            data-action='submit'>Invia</button>
-      
-          </form>
+            <div v-if="timeError" id="timeError">{{ timeError }}</div>
+        </div>
+  
+        <button v-if="!loading"
+        class="btn-send"           
+        @click.prevent="sendOrder"       
+        data-action='submit'>conferma</button>
+  
+      </form>
     </div>
   </div>
     <div v-if="loading" class="loop cubes">
@@ -407,6 +420,17 @@ export default {
   padding: 3px;
   
 }
+.btn-send{
+      border: 1px solid $c-nav-link;
+      background-color: $c-header;
+      max-width: 450px;
+      width: 100%;
+      padding: .4rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 20px;
+      margin-top: 10px
+}
 
 .center-orari{
   @include dfc;
@@ -488,6 +512,7 @@ export default {
 #nameError,
 #phoneError,
 #timeError,
+#cartError,
 #dateError {
   text-align: center;
   font-size: 0.8em;
@@ -495,6 +520,15 @@ export default {
   margin-top: 0.3rem;
 }
 
+.carterror{
+  max-width: 450px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: .3rem;
+
+}
 
 
 

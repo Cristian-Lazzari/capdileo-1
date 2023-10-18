@@ -68,6 +68,7 @@
       <router-link :to="{ name: 'contatti' }" :class="state.actvPage == 4 ? 'active-link' : '' " class="nav-link" @click="state.updateActvPage(4)" >contatti</router-link>
       <router-link :to="{ name: 'prenota' }" :class="state.actvPage == 5 ? 'active-link' : '' " class="nav-link" @click="state.updateActvPage(5)" >Ordina d'Asporto</router-link>
       <router-link :to="{ name: 'prenotaServizio' }" :class="state.actvPage == 6 ? 'active-link' : '' " class="nav-link" @click="state.updateActvPage(6)" >Prenota tavolo</router-link>
+      <router-link :to="{ name: 'conferma' }" :class="state.actvPage == 6 ? 'active-link' : '' " class="nav-link" @click="state.updateActvPage(6)" >conferma</router-link>
       <span  class="nav-link info" @click="openbotton" >info</span>
     </div>
     <div :class="state.sideMenuValue ? 'bottom-footer-on' : 'bottom-footer-off'">
