@@ -85,6 +85,7 @@ export default {
     sendOrder() {
       this.phoneError = "";
       this.nameError = "";
+      this.dateError = "";
       this.timeError = "";
       this.isValid = true;
       this.order_validations();
@@ -248,11 +249,14 @@ export default {
 
       
           <form class="form" id="demo-form" >
-            <div>
-              <input v-model="name" type="text" placeholder="Nome" id="name" />
+
+            <div class="sec-form">
+              <label for="name">Nome e Cognome</label>
+              <input v-model="name" type="text" placeholder="Nome e Cognome" id="name" />
               <div v-if="nameError" id="nameError">{{ nameError }}</div>
             </div>
-            <div>
+            <div class="sec-form">
+              <label for="phone">Numero di telefono</label>
               <input
                 v-model="phone"
                 type="text"
@@ -262,11 +266,13 @@ export default {
               />
               <div v-if="phoneError" id="phoneError">{{ phoneError }}</div>
             </div>
-            <div>
+            <div class="sec-form"> 
+              <label for="date">Ineserisci una data</label>
               <input type="date" v-model="idate" @input="checkData(idate)" id="">
               <div v-if="dateError" id="dateError">{{ dateError }}</div>
             </div>
-            <div class="orari-container">
+            <div class="sec-form">
+              <span>Seleziona un orario</span>
                 <div class="center-orari">
                   <div v-for="time in arrTimesSlot" :key="time.time_slot" >
                     <div v-if="time.visible" class="badge" :class="time.id == 'active' ? 'actv' : ''" @click="inputTime(time.time_slot, time.id)"  >{{ time.time_slot }} </div>
@@ -275,12 +281,9 @@ export default {
                <div v-if="timeError" id="timeError">{{ timeError }}</div>
             </div>
       
-            <button v-if="!loading" 
-            
-            @click.prevent="onSubmit" 
-            class="g-recaptcha btn" 
-            data-sitekey="6Ld254ooAAAAAPDhJAkgpIIaJe09mlZxpuDULufz"
-      
+            <button v-if="!loading"
+            class="btn-send"           
+            @click.prevent="sendOrder"       
             data-action='submit'>Invia</button>
       
           </form>
@@ -357,9 +360,9 @@ export default {
       background-color: $c-header;
       max-width: 450px;
       width: 100%;
-      border-radius: 4px;
       padding: .4rem;
       margin: 0 auto;
+      border-radius: 4px;
       .top-cart{
         padding: .2rem;
         @include dfc;
@@ -369,11 +372,60 @@ export default {
     
     
   }
+  
+  
+}
+.form{
+  max-width: 450px;
+  width: 100%;
+  margin:  2rem auto;
+  @include dfc;
+  flex-direction: column;
+  gap: 1rem;
+  .sec-form{
+  border-radius: 4px;
+  width: 100%;
+  border: 1px solid $c-nav-link;
+  background-color: $c-footer-nav;
 
-
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  input{
+    background-color: #fe425200;
+    border: 1px solid $c-nav-link;
+    color: $c-nav-link;
+    padding: 1rem;
+    border-radius: .4em
+  }
+}
+::-webkit-calendar-picker-indicator{
+  color: white;
+  background-color: $c-nav-link;
+  border-radius: 2px;
+  padding: 3px;
+  
 }
 
-
+.center-orari{
+  @include dfc;
+  flex-wrap: wrap;
+}
+.badge{
+  border: 2px solid white;
+  border-radius: 300px;
+  width: 70px;
+  text-align: center;
+  padding: 5px ;
+  margin: 5px;
+}
+.badge-off{
+  background-color: rgb(210, 32, 19);
+  padding: 5px 10px;
+  margin: 5px;
+}
+}
 
 .content-cart{
   height: 0;
@@ -422,50 +474,40 @@ export default {
 }
 
 .actv{
-  color: #fe1e52;
+  color: $c-header;
   background-color: white !important;;
 }
 
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-  input {
-    background-color: rgba(250, 235, 215, 0);
-    padding: 1em 1.4em;
-    border: 2px solid $c-white;
-    border-radius: 100px;
-    color: white;
-    min-width: 250px;
-  }
-  select {
-    min-width: 250px;
-    background-color: rgba(250, 235, 215, 0);
-    padding: 1em 1.4em;
-    border: 2px solid $c-white;
-    border-radius: 100px;
-    color: white;
-    option {
-      background-color: black;
-      color: white;
-    }
-  }
-}
+
 ::placeholder {
   opacity: 1;
-  color: white;
+  color: $c-nav-link;
 }
 
 #nameError,
 #phoneError,
-#timeError {
+#timeError,
+#dateError {
   text-align: center;
   font-size: 0.8em;
   color: red;
   margin-top: 0.3rem;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .btn_loading {
@@ -603,26 +645,7 @@ export default {
 .item:nth-child(6):after {
   color: #ffda77;
 }
-.badge{
-  background-color: blue;
-  padding: 5px 10px;
-  margin: 5px;
-}
-.badge-off{
-  background-color: rgb(210, 32, 19);
-  padding: 5px 10px;
-  margin: 5px;
-}
-.orari-container{
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-  flex-wrap: wrap;
-  max-width: 900px;
-}
-.center-orari{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+
+
+
 </style>
