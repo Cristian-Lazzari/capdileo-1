@@ -258,6 +258,7 @@ export default {
       </div>
       
       <div class="sec-form">
+        <span>Lascia una nota per il ristorante</span>
         <textarea cols="30" rows="10" v-model="message"></textarea>
       </div>
 
@@ -328,6 +329,7 @@ export default {
       resize: none;
       border-radius: .4em;
       border: 1px solid $c-nav-link;
+      padding: 1rem;
     }
   }
   .sec-form{
