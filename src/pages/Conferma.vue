@@ -280,7 +280,7 @@ export default {
           <div v-if="phoneError" id="phoneError">{{ phoneError }}</div>
         </div>
         <div class="sec-form"> 
-          <label for="date">Ineserisci una data</label>
+          <label for="date">Inserisci una data</label>
           <input type="date" v-model="idate" @input="checkData(idate)" id="">
           <div v-if="dateError" id="dateError">{{ dateError }}</div>
         </div>

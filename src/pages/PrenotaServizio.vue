@@ -261,8 +261,12 @@ export default {
         <textarea cols="30" rows="10" v-model="message"></textarea>
       </div>
 
+      <button v-if="!loading"
+        class="btn-send"           
+        @click.prevent="sendOrder"       
+        data-action='submit'>conferma</button>
 
-      <span v-if="!loading" @click="sendOrder()" class="btn">Invia</span>
+      <!--<span v-if="!loading" @click="sendOrder()" class="btn">Invia</span>-->
     </div>
     <div v-if="loading" class="loop cubes">
       <div class="item cubes"></div>
@@ -277,6 +281,17 @@ export default {
 
 <style scoped lang="scss">
 @use "../assets/styles/general.scss" as *;
+
+.menu{
+  .top-menu{
+    h1{
+      text-align: center;
+      text-transform: uppercase;
+      padding-top: 2rem;
+      font-size: 30px;
+    }
+  }
+}
 
 .actv{
   color: white;
@@ -310,12 +325,27 @@ export default {
     }
     textarea{
       background-color:$c-footer-nav;
+      resize: none;
+      border-radius: .4em;
+      border: 1px solid $c-nav-link;
     }
   }
-  .nperson{
-    input{
+  .sec-form{
+    .nperson{
+      
       width: 100%;
     }
+  }
+  .btn-send{
+    border: 1px solid $c-nav-link;
+    background-color: $c-header;
+    max-width: 450px;
+    width: 100%;
+    padding: .4rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 20px;
+    margin-top: 10px
   }
 }
 
