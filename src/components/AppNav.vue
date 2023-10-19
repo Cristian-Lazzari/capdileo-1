@@ -6,10 +6,17 @@
   data(){
     return{
       state,
+      infomenu: 0,
     }
   },
   methods: {
-        
+    infoside() {
+        if (this.infomenu) {
+            this.infomenu = 0
+        } else {
+            this.infomenu = 1
+        }
+        },
     }
  }
 </script>
@@ -69,7 +76,10 @@
       <router-link :to="{ name: 'prenota' }" :class="state.actvPage == 5 ? 'active-link' : '' " class="nav-link" @click="state.updateActvPage(5)" >Ordina d'Asporto</router-link>
       <router-link :to="{ name: 'prenotaServizio' }" :class="state.actvPage == 6 ? 'active-link' : '' " class="nav-link" @click="state.updateActvPage(6)" >Prenota tavolo</router-link>
       <router-link :to="{ name: 'conferma' }" :class="state.actvPage == 6 ? 'active-link' : '' " class="nav-link" @click="state.updateActvPage(6)" >conferma</router-link>
-      <span  class="nav-link info" @click="openbotton" >info</span>
+      <span  class="nav-link info" @click="infoside(infomenu)" :class="infomenu ? 'infoopen' : 'infoclose'">info</span>
+    </div>
+    <div class="infosideopen" :class="infomenu ? 'infosideopen' : 'infosideclose'">
+       
     </div>
     <div :class="state.sideMenuValue ? 'bottom-footer-on' : 'bottom-footer-off'">
       <div class="sec-1">
@@ -283,7 +293,27 @@
   .nav{
     display: none;
   }
+  .infoopen{
+    
+        z-index:22;
+    }
+.infosideopen {
+    background-color: $c-footer-nav;
+    width: 100vw;
+    height: 100vh;
+    z-index: 21;
+    position: fixed;
+    top: 0;
+    right: 0;
+    transition: all  linear 0.2s
+    }
   
+
+
+.infosideclose {
+  transition: all  linear 0.2s ;
+  height: 0;
+}
 }
 </style>
 
