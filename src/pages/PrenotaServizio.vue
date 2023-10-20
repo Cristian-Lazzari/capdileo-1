@@ -213,42 +213,61 @@ export default {
    
 
     <div class="form" id="orderForm">
+      <div class="sec-form">
+          <label for="name">Nome e Cognome</label>
+          <input v-model="name" type="text" placeholder="Nome e Cognome" id="name" />
+          <div v-if="nameError" id="nameError">{{ nameError }}</div>
+        </div>
+      <div class="sec-form">
+           <label for="phone">Numero di telefono</label>
+            <input
+            v-model="phone"
+            type="text"
+            onkeypress="return /[0-9]/i.test(event.key)"
+            placeholder="N° telefono"
+            id="phone"
+          />
+          <div v-if="phoneError" id="phoneError">{{ phoneError }}</div>
+        </div>
       <div>
-        <input v-model="name" type="text" placeholder="Nome" id="name" />
-        <div v-if="nameError" id="nameError">{{ nameError }}</div>
-      </div>
-      <div>
+      <div class="sec-form nperson">
+        <label for="nperson">Numero ospiti</label>
         <input
-          v-model="phone"
-          type="text"
-          onkeypress="return /[0-9]/i.test(event.key)"
-          placeholder="N° telefono"
-          id="phone"
-        />
-        <div v-if="phoneError" id="phoneError">{{ phoneError }}</div>
-      </div>
-      <div>
-        <input  type="number" v-model="nperson" id="" placeholder="numero ospiti">
+            v-model="nperson"
+            type="text"
+            onkeypress="return /[0-9]/i.test(event.key)"
+            placeholder="numero ospiti"
+            id="nperson"
+          />
         <div v-if="npersonError" id="npersonError">{{ npersonError }}</div>
       </div>
-      <div>
-        <input type="date" v-model="idate" @input="checkData(idate)" id="">
+    </div>
+    <div class="sec-form">
+      <span>Seleziona una data </span>
+      <input type="date" v-model="idate" @input="checkData(idate)" id="">
         <div v-if="dateError" id="dateError">{{ dateError }}</div>
-      </div>
-      <div class="orari-container">
-          <div class="center-orari">
-            <div v-for="time in arrTimesSlot" :key="time.time_slot" >
-              <div v-if="time.visible" class="badge" :class="time.id == 'active' ? 'actv' : ''" @click="inputTime(time.time_slot, time.id)"  >{{ time.time_slot }} </div>
+            <div class="center-orari">
+              <div v-for="time in arrTimesSlot" :key="time.time_slot" >
+                <div v-if="time.visible" class="badge" :class="time.id == 'active' ? 'actv' : ''" @click="inputTime(time.time_slot, time.id)"  >{{ time.time_slot }} </div>
+              </div>
             </div>
-          </div>
-         <div v-if="timeError" id="timeError">{{ timeError }}</div>
-      </div>
+            <div v-if="timeError" id="timeError">{{ timeError }}</div>
+        </div>
       <div>
-        <textarea name="message" id="" cols="30" rows="10"></textarea>
+        
+      </div>
+      
+      <div class="sec-form">
+        <span>Lascia una nota per il ristorante</span>
+        <textarea cols="30" rows="10" v-model="message"></textarea>
       </div>
 
+      <button v-if="!loading"
+        class="btn-send"           
+        @click.prevent="sendOrder"       
+        data-action='submit'>conferma</button>
 
-      <span v-if="!loading" @click="sendOrder()" class="btn">Invia</span>
+      <!--<span v-if="!loading" @click="sendOrder()" class="btn">Invia</span>-->
     </div>
     <div v-if="loading" class="loop cubes">
       <div class="item cubes"></div>
@@ -264,38 +283,74 @@ export default {
 <style scoped lang="scss">
 @use "../assets/styles/general.scss" as *;
 
+.menu{
+  .top-menu{
+    h1{
+      text-align: center;
+      text-transform: uppercase;
+      padding-top: 2rem;
+      font-size: 30px;
+    }
+  }
+}
+
 .actv{
   color: white;
   background-color: $c-header !important;;
 }
 
 
-.form {
-  display: flex;
+.form{
+  max-width: 450px;
+  width: 100%;
+  margin:  2rem auto;
+  @include dfc;
   flex-direction: column;
   gap: 1rem;
-  align-items: center;
-  input, textarea{
-    background-color: rgba(250, 235, 215, 0);
-    padding: 1em 1.4em;
-    border: 2px solid $c-white;
-    border-radius: 10px;
-    color: white;
-    min-width: 250px;
-  }
-  select {
-    min-width: 250px;
-    background-color: rgba(250, 235, 215, 0);
-    padding: 1em 1.4em;
-    border: 2px solid $c-white;
-    border-radius: 100px;
-    color: white;
-    option {
-      background-color: black;
-      color: white;
+  .sec-form{
+    border-radius: 4px;
+    width: 100%;
+    border: 1px solid $c-nav-link;
+    background-color: $c-footer-nav;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    input{
+      background-color: #fe425200;
+      border: 1px solid $c-nav-link;
+      color: $c-nav-link;
+      padding: 1rem;
+      border-radius: .4em;
+      
+    }
+    textarea{
+      background-color:$c-footer-nav;
+      resize: none;
+      border-radius: .4em;
+      border: 1px solid $c-nav-link;
+      padding: 1rem;
     }
   }
+  .sec-form{
+    .nperson{
+      
+      width: 100%;
+    }
+  }
+  .btn-send{
+    border: 1px solid $c-nav-link;
+    background-color: $c-header;
+    max-width: 450px;
+    width: 100%;
+    padding: .4rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 20px;
+    margin-top: 10px
+  }
 }
+
 ::placeholder {
   opacity: 1;
   color: white;
@@ -525,13 +580,14 @@ export default {
 .item:nth-child(6):after {
   color: #ffda77;
 }
-.badge{
-  border: 1px solid white;
-  border-radius: 100px;
-  padding: 5px 10px;
-  margin: 5px;
-  width: 60px;
   
+.badge{
+  border: 2px solid white;
+  border-radius: 300px;
+  width: 70px;
+  text-align: center;
+  padding: 5px ;
+  margin: 5px;
 }
 .badge-off{
   background-color: rgb(210, 32, 19);

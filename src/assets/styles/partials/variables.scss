@@ -65,3 +65,11 @@ $fs-title-min-s: 3.4rem;
     scale: 1.05;
     transition: all linear .2s;
 }
+.badge{
+    border: 2px solid white;
+    border-radius: 300px;
+    width: 70px;
+    text-align: center;
+    padding: 5px ;
+    margin: 5px;
+  }
