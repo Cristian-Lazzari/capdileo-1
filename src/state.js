@@ -3,6 +3,7 @@ import { reactive } from 'vue';
 export const state = reactive({
     sideMenuValue: 0,
     sideCartValue: 1,
+    infomenu: 0,
     arrCart:[],
     arrId:[],
     arrQt:[],
@@ -565,7 +566,13 @@ export const state = reactive({
     updateActvPage(page){
         this.sideMenuValue = 0
         this.actvPage = page;
-    }
-
+    },
+    infoside() {
+        if (this.infomenu) {
+            this.infomenu = 0
+        } else {
+            this.infomenu = 1
+        }
+    },
     
 });
