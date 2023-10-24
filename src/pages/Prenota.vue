@@ -22,7 +22,7 @@
       getProduct(cat){
         this.categoryId = cat,
         axios
-				.get('http://127.0.0.1:8000/api/projects', {
+				.get(this.state.baseUrl+ 'api/projects', {
 					params: {
 						category: this.categoryId,
 					},

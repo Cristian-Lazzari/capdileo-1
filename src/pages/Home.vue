@@ -11,7 +11,7 @@
         }
     },
     created(){
-        //axios.get(state.baseUrl + 'api/setting', {}).then(response=> this.state.setting = response.data.results );
+        axios.get(state.baseUrl + 'api/setting', {}).then(response=> this.state.setting = response.data.results );
    
         this.state.actvPage = 1;
     }

@@ -12,10 +12,10 @@ export const state = reactive({
     setting:[
         {status: 1},
         {status: 1},
-        {status: 0},
+        {status: 1},
     ],
     actvPage: 1,
-    baseUrl: 'http://127.0.0.1:8000/',
+    baseUrl: 'https://db.dashboardristorante.it/',
     getImageUrl(image) {
 		return image
 			? this.baseUrl + 'storage/' + image
