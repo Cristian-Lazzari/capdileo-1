@@ -217,7 +217,7 @@ export default {
           <label for="name">Nome e Cognome</label>
           <input v-model="name" type="text" placeholder="Nome e Cognome" id="name" />
           <div v-if="nameError" id="nameError">{{ nameError }}</div>
-        </div>
+      </div>
       <div class="sec-form">
            <label for="phone">Numero di telefono</label>
             <input
@@ -228,8 +228,7 @@ export default {
             id="phone"
           />
           <div v-if="phoneError" id="phoneError">{{ phoneError }}</div>
-        </div>
-      <div>
+      </div>
       <div class="sec-form nperson">
         <label for="nperson">Numero ospiti</label>
         <input
@@ -241,34 +240,37 @@ export default {
           />
         <div v-if="npersonError" id="npersonError">{{ npersonError }}</div>
       </div>
-    </div>
-    <div class="sec-form">
-      <span>Seleziona una data </span>
-      <input type="date" v-model="idate" @input="checkData(idate)" id="">
-        <div v-if="dateError" id="dateError">{{ dateError }}</div>
-            <div class="center-orari">
-              <div v-for="time in arrTimesSlot" :key="time.time_slot" >
-                <div v-if="time.visible" class="badge" :class="time.id == 'active' ? 'actv' : ''" @click="inputTime(time.time_slot, time.id)"  >{{ time.time_slot }} </div>
-              </div>
-            </div>
-            <div v-if="timeError" id="timeError">{{ timeError }}</div>
-        </div>
-      <div>
-        
-      </div>
-      
       <div class="sec-form">
-        <span>Lascia una nota per il ristorante</span>
-        <textarea cols="30" rows="10" v-model="message"></textarea>
+        <span>Seleziona una data </span>
+        <input type="date" v-model="idate" @input="checkData(idate)" id="">
+          <div v-if="dateError" id="dateError">{{ dateError }}</div>
+              <div class="center-orari">
+                <div v-for="time in arrTimesSlot" :key="time.time_slot" >
+                  <div v-if="time.visible" class="badge" :class="time.id == 'active' ? 'actv' : ''" @click="inputTime(time.time_slot, time.id)"  >{{ time.time_slot }} </div>
+                </div>
+              </div>
+              <div v-if="timeError" id="timeError">{{ timeError }}</div>
+        
+        <div>
+          
+        </div>
+        
+        <div class="sec-form">
+          <span>Lascia una nota per il ristorante</span>
+          <textarea cols="30" rows="10" v-model="message"></textarea>
+        </div>
+  
+        <button v-if="!loading"
+          class="btn-send"           
+          @click.prevent="sendOrder"       
+          data-action='submit'>conferma</button>
+  
+        <!--<span v-if="!loading" @click="sendOrder()" class="btn">Invia</span>-->
       </div>
-
-      <button v-if="!loading"
-        class="btn-send"           
-        @click.prevent="sendOrder"       
-        data-action='submit'>conferma</button>
-
-      <!--<span v-if="!loading" @click="sendOrder()" class="btn">Invia</span>-->
     </div>
+
+
+
     <div v-if="loading" class="loop cubes">
       <div class="item cubes"></div>
       <div class="item cubes"></div>

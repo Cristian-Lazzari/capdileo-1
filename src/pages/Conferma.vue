@@ -18,6 +18,7 @@ export default {
       idate:'',
       timeSlot: "",
 
+
       nameError: "",
       phoneError: "",
       timeError: "",
@@ -293,6 +294,7 @@ export default {
             </div>
             <div v-if="timeError" id="timeError">{{ timeError }}</div>
         </div>
+        
   
         <button v-if="!loading"
         class="btn-send"           
