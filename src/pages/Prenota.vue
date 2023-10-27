@@ -527,7 +527,7 @@
 }
 
 @media (max-width:$bp2) {
-  .card{
+  .card-wrap{
     width: 95% !important;
   }
 }
