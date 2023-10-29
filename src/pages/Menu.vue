@@ -185,6 +185,7 @@
           top: 0;
           left: 0;
           height: 100%;
+          aspect-ratio: 1;
           border-radius: $h-c;
         }
         .title{
