@@ -110,7 +110,8 @@ export default {
         console.log(data);
 
         console.log(JSON.stringify(this.state.arrQt));
-        axios.post(state.baseUrl + "api/orders", data).then((response) => {
+        axios.post(state.baseUrl + "api/orders", data)
+        .then((response) => {
           this.success = response;
           this.loading = false;
         });

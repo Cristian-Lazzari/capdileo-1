@@ -36,7 +36,7 @@ body{
     // right: 0;
     width: 70%;
     padding: 0 2rem ;
-    overflow: auto;
+    overflow: hidden;
 }
 
 
