@@ -28,7 +28,7 @@ export default {
       isValid: true,
       loading: false,
       succes: false,
-      DeltaMinuti: 10,
+      DeltaMinuti: 39,
     };
   },
   methods: {
@@ -185,17 +185,15 @@ export default {
           let min     = parseInt(element.time_slot.slice(3,5));
           
           
-          if(oraOggi == ora){
-            console.log(min)
-            if((min - (this.DeltaMinuti + minOggi)) > 0 ){
-              this.arrTimesSlot.push(element)
-            }
+          if(oraOggi == ora && this.DeltaMinuti + minOggi < min ){
+            console.log('true')
+            
           }
-          else if(ora == (oraOggi + 1)){
-            if((minOggi - 60 + min) > this.DeltaMinuti)
+          else if((ora == oraOggi + 1) && ((60 - minOggi + min) > this.DeltaMinuti)){
+            
             this.arrTimesSlot.push(element)
           }
-          else if(oraOggi < ora){
+          else if(ora > oraOggi + 1){
             this.arrTimesSlot.push(element)
           }
           
@@ -215,10 +213,7 @@ export default {
         
       }
       
-    },
-    onSubmit(token) {
-        document.getElementById("demo-form").submit();
-      }
+    }
   },
   created() {
    
