@@ -149,7 +149,7 @@
       justify-content: center!important;
     }
     .img{
-      display: none;
+      display: none!important;
    
     }
   }
