@@ -24,8 +24,14 @@
         <AppHeader class="hd" />
         <div class="main-home">
             
-            <div class="par par-1"  v-if="state.setting[0].status">
+            <div class="par par-1" id="par1" v-if="state.setting[0].status">
                 <div class="overlay">
+                    <div class="arrow">
+                        1
+                        <a href="#par2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>
+                        </a>
+                    </div>
                     <div class="t-c">
                         <h2 id="h2par1"><span class="s1">ORDINA</span> IL NOSTRO <span class="s2">ASPORTO</span> </h2>
                         <span>La serata perfetta non esis... E invece esiste eccome! Nasce proprio dal pasto perfetto, quindi che aspetti prenota ora la tua pizza o il tavolo per poterla gustare da noi </span>
@@ -33,8 +39,17 @@
                     <router-link :to="{ name: 'prenota' }" class="btn" >Prenota asporto</router-link>
                 </div>
             </div>
-            <div class="par par-2"  v-if="state.setting[1].status">
+            <div class="par par-2" id="par2" v-if="state.setting[1].status">
             <div class="overlay">
+                <div class="arrow">
+                    <a href="#par1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/></svg>
+                    </a>
+                    2
+                    <a href="#par3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>
+                        </a>
+                </div>
                 <div class="t-c">
                     <h2 id="h2par2"><span class="s1 s1-m">PRENOTA ORA</span> IL TUO <span class="s2 s2-m">TAVOLO</span></h2>
                     <span>E se volessi cenare proprio da noi? Prenota subito il tuo tavolo ti aspettiamo a cena da noi!</span>
@@ -42,8 +57,14 @@
                 <router-link :to="{ name: 'prenotaServizio' }" class="btn" >Prenota un tavolo</router-link>
             </div>
             </div>
-            <div class="par par-3">
+            <div class="par par-3" id="par3">
                 <div class="overlay">
+                    <div class="arrow">
+                    <a href="#par2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/></svg>
+                    </a>
+                    3
+                </div>
                     <div class="t-c">
                         <h2 id="h2par3">SCOPRI IL NOSTRO MENU</h2>
                         <span>
@@ -108,7 +129,15 @@
         display: flex;
         gap: 3rem;
         
-        
+        .arrow{
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            padding: 10px;
+            gap: .4rem;
+        }
         .par{
             
             scroll-snap-align: start;
