@@ -68,21 +68,21 @@
       <router-link :to="{ name: 'contatti' }" :class="state.infomenu ? 'menu-off': 'active-link' " class="nav-link" @click="state.updateActvPage(4)" >contatti</router-link>
       <router-link :to="{ name: 'prenota' }" :class="state.infomenu ? 'menu-off': 'active-link' " class="nav-link" @click="state.updateActvPage(5)" >Ordina d'Asporto</router-link>
       <router-link :to="{ name: 'prenotaServizio' }" :class="state.infomenu ? 'menu-off': 'active-link' " class="nav-link" @click="state.updateActvPage(6)" >Prenota tavolo</router-link>
-      <router-link :to="{ name: 'conferma' }" :class="state.infomenu ? 'menu-off': 'active-link' " class="nav-link" @click="state.updateActvPage(6)" >conferma</router-link>
       <div class="nav-link info" @click="state.infoside" :class="state.infomenu ? 'infoopen' : 'infoclose'">
         <div class="top-info">
           <div class="info-n" :class="state.infomenu ? 'info-on' : 'info-n'">info</div>
           <div class="info-n" @click="state.infoside" :class="state.infomenu ? 'info-btn' : 'info-n'">+</div>
         </div>
-        <div class="infosideopen" :class="state.infomenu ? 'infosideopen' : 'infosideclose'">
+
+        <div :class="state.infomenu ? 'infosideopen' : 'infosideclose'">
           <div class="topinfo" :class="state.infomenu ? '' : 'topinfoclose'">
             <div class="sec-1">
               <h4>Dove puoi trovarci</h4>
               <p>Borghetto | via borghetto 69</p>
             </div>
             <div class="sec-2">
-                <h4>Orari d'apertura</h4>
-                <div class="cont-giorni">
+              <h4>Orari d'apertura</h4>
+              <div class="cont-giorni">
                   <span>lunedì</span>
                   <span>martedì</span>
                   <span>giovedì</span>
@@ -104,37 +104,10 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div :class="state.sideMenuValue ? 'bottom-footer-on' : 'bottom-footer-off'">
-      <div class="sec-1">
-        <h4>Dove puoi trovarci</h4>
-        <p>Borghetto | via borghetto 69</p>
-      </div>
-      <div class="sec-2">
-        <h4>Orari d'apertura</h4>
-        <div class="cont-giorni">
-          <span>lunedì</span>
-          <span>martedì</span>
-          <span>giovedì</span>
-          <span>venerdì</span>
-          <span>sabato</span>
-          <span>domenica</span>
-        </div>
-        <div class="cont-orari">
-          <span class="time" >chiusi</span>         
-          <span class="time" >16:00 - 22:00</span>
-          <span class="time" >16:00 - 22:00</span>
-          <span class="time" >16:00 - 22:00</span>
-          <span class="time" >16:00 - 22:00</span>
-          <span class="time" >16:00 - 22:00</span>
-        </div>
 
       </div>
-      <div class="sec-3">
-        Capriccio di leo S.r.l, PI: 1231231231231, privacy policy, product by FUTURE+
-      </div>
     </div>
+
   </div>
 </template>
 <!-- 
@@ -177,9 +150,10 @@ height: 0%;
   display:none;
 }
 .infosideopen{
-  height: auto;
+
   text-align:center;
   .sec-1{
+
       @include dfj;
       flex-direction: column;
       gap: 1rem;
@@ -187,44 +161,44 @@ height: 0%;
       padding-bottom: 100px;
 
       h4{
-        font-size:30px;
+        font-size:18px;
         padding-bottom:10px;
       }
       p{
-        font-size:25px;
+        font-size:16px;
       }
     }
-    .sec-2{
-      @include dfj;
-      flex-wrap: wrap;
-      gap: 1rem;
+  .sec-2{
+    @include dfj;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+    justify-content: space-around;
+    h4{
+      
       width: 100%;
-      justify-content: space-around;
-      h4{
-        
-        width: 100%;
-        padding-bottom:30px;
-        font-size: 30px;
-      }
-      .cont-giorni, .cont-orari{
-        font-size: 15px;
-        @include dfj;
-        flex-direction: column;
-        gap: .5rem;
-        text-align: left;
-        text-transform: uppercase;
-        
-        .time{
-          text-align: center;
-        }
-      }
-      padding-bottom: 50px;
+      padding-bottom:30px;
+      font-size: 30px;
     }
-    .sec-3{
-      background-color: rgba(0, 0, 0, 0.43);
-      font-size: 10px;
-      padding: 10px;
+    .cont-giorni, .cont-orari{
+      font-size: 15px;
+      @include dfj;
+      flex-direction: column;
+      gap: .5rem;
+      text-align: left;
+      text-transform: uppercase;
+      
+      .time{
+        text-align: center;
+      }
     }
+
+  }
+  .sec-3{
+    background-color: rgba(0, 0, 0, 0.43);
+    font-size: 10px;
+    padding: 10px;
+  }
     
 }
 .menu-off{
