@@ -19,7 +19,11 @@
     <div class="cont">
       <div class="center">
         <h1 id="title">Il Capriccio <br> di Leo</h1>
-        <img src="../assets/img/pizza-olio.png" alt="">
+        <div class="img">
+          <p>"la nostra storia è qualità raggiunta per essere gustata"</p>
+          <div class="overlay"></div>
+        </div>
+
       </div>
       <div class="par" v-if="state.setting[2].status" >
         Finalmente un po di riposo anche per noi.. siamo in ferie dal {{ state.setting[2].from }} e torneremo il  {{ state.setting[2].to }}
@@ -74,16 +78,37 @@
       width: 100%;
   
       h1{
+        
         color: white;
         font-family: 'Playball', cursive;
         font-size: 60px;
         text-shadow: -3px -3px 15px black;
         text-align: center;
       }
-      img{
+      
+      .img{
+        background-image: url('../assets/img/pizza-olio.png');
+        background-size: cover;
+        background-repeat: no-repeat;
         box-shadow: -7px -7px 20px black;
         position: relative;
         height: 200px;
+        aspect-ratio: 1.25;
+        display: flex;
+        padding: 5%;
+        text-align: center;
+        align-items: flex-end;
+        p{
+          position: relative;
+          z-index: 3;
+
+        }
+        .overlay{
+          background-color: rgba(0, 0, 0, 0.495);
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+        }
         //height: 80px;
       }
     }
@@ -123,7 +148,7 @@
     .center{
       justify-content: center!important;
     }
-    img{
+    .img{
       display: none;
    
     }
