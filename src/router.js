@@ -18,32 +18,32 @@ const router = createRouter({
         component: Home,
       },
       {
-        path: '/chi-siamo',
+        path: '/',
         name: 'chi-siamo',
         component: ChiSiamo,
       },
       {
-        path: '/contatti',
+        path: '/',
         name: 'contatti',
         component: Contatti,
       },
       {
-        path: '/menu',
+        path: '/',
         name: 'menu',
         component: Menu,
       },   
       {
-        path: '/prenota',
+        path: '/',
         name: 'prenota',
         component: Prenota,
       },
       {
-        path: '/prenotaServizio',
+        path: '/',
         name: 'prenotaServizio',
         component: PrenotaServizio,
       },
       {
-        path: '/conferma',
+        path: '/',
         name: 'conferma',
         component: Conferma,
       }
