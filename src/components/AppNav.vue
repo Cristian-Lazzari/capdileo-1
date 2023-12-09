@@ -404,6 +404,11 @@ info-off{
   .nav{
     .top{
       gap: 0;
+      height: 50%;
+    }
+    .bottom-footer{
+      
+      height: 50%;
     }
     .nav-link{
 
