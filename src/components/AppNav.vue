@@ -246,7 +246,7 @@ info-off{
     .nav-link{
       max-width: 150px;
       text-transform: uppercase;
-      line-height: 2rem;
+     
       color: $c-nav-link;
       font-family: 'Gabarito', cursive;
       font-size: 1.8rem;
