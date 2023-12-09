@@ -398,8 +398,18 @@ info-off{
     display: none;
   }
 
-  
 
+}
+@media (max-height:800px) {
+  .nav{
+    .top{
+      gap: 0;
+    }
+    .nav-link{
+
+      font-size: 1.3rem !important;
+    }
+  }
 
 
 }
