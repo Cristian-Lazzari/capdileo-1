@@ -400,7 +400,7 @@ info-off{
 
 
 }
-@media (max-height:800px) {
+@media (max-height:825px) {
   .nav{
     .top{
       gap: 0;
