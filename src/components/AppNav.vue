@@ -241,7 +241,7 @@ info-off{
     padding: 2rem;
     height: 60%;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     
     .nav-link{
       max-width: 150px;
