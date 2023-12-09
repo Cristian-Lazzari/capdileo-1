@@ -262,7 +262,7 @@ info-off{
     @include dfa;
     flex-direction: column;
     justify-content: space-between;
-    padding-top:25px;
+    padding-top:7%;
     text-shadow: 1px 1px 8px black;
     height: 40%;
     width: 100%;
@@ -274,9 +274,9 @@ info-off{
       width: 100%;
     }
     .sec-2{
-      @include dfj;
+      @include dfa;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap:1rem;
       width: 100%;
       justify-content: space-around;
       h4{
@@ -412,7 +412,7 @@ info-off{
     }
     .nav-link{
 
-      font-size: 1.3rem !important;
+      font-size: 1.1rem !important;
     }
   }
 
